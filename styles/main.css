@@ -34,8 +34,8 @@ html {
  /* Medium and small screens (640px) */
  @media (min-width: 640px) {
    /* Style information will go here */
-     html { font-size: 112%; }
-     .column {
+     html { font-size: 112%; } 
+    .column {
          float: left;
          padding-left: 1rem;
          padding-right: 1rem;
