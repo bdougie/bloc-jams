@@ -82,14 +82,18 @@ var setCurrentAlbum = function(album) {
      }
  };
 
-//keeps going upwards while element is true until currentParent matches targetClass. In the case of song-item-number, the child would be the icon
+//keeps going upwards while element is true until currentParent matches targetClass. In the case of song-item-number, the child would be the icon.
 var findParentByClassName = function(element, targetClass) {
     if (element) {
-        var currentParent = element.parentElement;
-        while (currentParent.className != targetClass && currentParent.className !== null) {
-            currentParent = currentParent.parentElement;
-        }
-        return currentParent;
+            var currentParent = element.parentElement;
+            if (currentParent == null) {
+                alert('No parent found')
+            } else { //QUESTION do I need some kind of a count to see how many parents exist in order to check if a parent exists?
+                while (currentParent.className != targetClass && currentParent.className !== null) {
+                currentParent = currentParent.parentElement;
+                }
+            return currentParent;
+            }       
     }
 };
 
