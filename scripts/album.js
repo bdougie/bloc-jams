@@ -84,16 +84,21 @@ var setCurrentAlbum = function(album) {
 
 //keeps going upwards while element is true until currentParent matches targetClass. In the case of song-item-number, the child would be the icon.
 var findParentByClassName = function(element, targetClass) {
-    if (element) {
-            var currentParent = element.parentElement;
-            if (currentParent == null) {
-                alert('No parent found')
-            } else { //QUESTION do I need some kind of a count to see how many parents exist in order to check if a parent exists?
-                while (currentParent.className != targetClass && currentParent.className !== null) {
-                currentParent = currentParent.parentElement;
-                }
+    // set parent
+    var currentParent = element.parentElement;
+    
+    if (currentParent) {
+        // Loop to find existing parent or grandparent
+        while (currentParent.className && currentParent.className != targetClass) {
+            currentParent = currentParent.parentElement;
+        }
+        if (currentParent.className === targetClass) {
             return currentParent;
-            }       
+        } else {
+            alert("No parent with that class name found.");
+        }
+    } else {
+        alert("No parent found.");
     }
 };
 
@@ -184,14 +189,14 @@ var currentlyPlayingSong = null;
          });
      }
      
-//     // QUESTION for some reason, when this part is active, the playbutton remains stuck in hover mode?    
-//     var album = [albumPicasso, albumMarconi, albumBTS];
-//     var index = 1;
-//     albumImage.addEventListener("click", function(event){
-//        setCurrentAlbum(album[index]);
-//        index++;
-//     if (index == album.length) {
-//         index = 0;
-//     }
-//        });
+     // QUESTION for some reason, when this part is active, the playbutton remains stuck in hover mode?    
+     var album = [albumPicasso, albumMarconi, albumBTS];
+     var index = 1;
+     albumImage.addEventListener("click", function(event){
+        setCurrentAlbum(album[index]);
+        index++;
+     if (index == album.length) {
+         index = 0;
+     }
+        });
  }
