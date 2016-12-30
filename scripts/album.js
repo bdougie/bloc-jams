@@ -54,31 +54,31 @@ var createSongRow = function(songNumber, songName, songLength) {
       + '</tr>'
       ;
  
-     return template;
+     return $(template);
  };
 
 
  // #1 set to global scope as to access albumImage variable
-     var albumTitle = document.getElementsByClassName('album-view-title')[0];
-     var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-     var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-     var albumImage = document.getElementsByClassName('album-cover-art')[0];
-     var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+     var $albumTitle = $('.album-view-title');
+     var $albumArtist = $('.album-view-artist');
+     var $albumReleaseInfo = $('.album-view-release-info');
+     var $albumImage = $('.album-cover-art');
+     var $albumSongList = $('.album-view-song-list');
     
 
 var setCurrentAlbum = function(album) {
      // #2 this sets the variables equal to the value listed in the album variables, remember that name.property access value set in that property
-     albumTitle.firstChild.nodeValue = album.title;
-     albumArtist.firstChild.nodeValue = album.artist;
-     albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
-     albumImage.setAttribute('src', album.albumArtUrl);
+     $albumTitle.text(album.title);
+     $albumArtist.text(album.artist);
+     $albumReleaseInfo.text(album.year + ' ' + album.label);
+     $albumImage.attr('src', album.albumArtUrl);
  
      // #3 clears song list, without calling setCurrentAlbum, song list is not shown as it isn't in album.html
-     albumSongList.innerHTML = '';
- 
+    $albumSongList.empty(); 
      // #4
      for (var i = 0; i < album.songs.length; i++) {
-         albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
+         var $newRow = createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
+         $albumSongList.append($newRow);
      }
  };
 
@@ -189,7 +189,6 @@ var currentlyPlayingSong = null;
          });
      }
      
-     // QUESTION for some reason, when this part is active, the playbutton remains stuck in hover mode?    
      var album = [albumPicasso, albumMarconi, albumBTS];
      var index = 1;
      albumImage.addEventListener("click", function(event){
