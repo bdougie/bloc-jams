@@ -189,6 +189,7 @@ var currentlyPlayingSong = null;
          });
      }
      
+     //no longer works in cp17, jQuery error?
      var album = [albumPicasso, albumMarconi, albumBTS];
      var index = 1;
      albumImage.addEventListener("click", function(event){
