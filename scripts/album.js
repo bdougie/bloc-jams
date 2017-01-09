@@ -57,22 +57,22 @@ var createSongRow = function(songNumber, songName, songLength) {
             updatePlayerBarSong();
 
         } else if (currentlyPlayingSongNumber === songNumber) {if (currentSoundFile.isPaused()) {
-+                $(this).html(pauseButtonTemplate);
-+                $('.main-controls .play-pause').html(playerBarPauseButton);
-+                currentSoundFile.play();
-+            } else {
-+                $(this).html(playButtonTemplate);
-+                $('.main-controls .play-pause').html(playerBarPlayButton);
-+                currentSoundFile.pause();   
-+            }
+                $(this).html(pauseButtonTemplate);
+                $('.main-controls .play-pause').html(playerBarPauseButton);
+                currentSoundFile.play();
+            } else {
+                $(this).html(playButtonTemplate);
+                $('.main-controls .play-pause').html(playerBarPlayButton);
+                currentSoundFile.pause();   
+            }
         }
      };
     
     // check if playing or not and show button accordingly
     var onHover = function(event) {
          // as before, checking if target matches currentPlayingSong, if not, then show playButtonTemplate
-        var songNumberCell = parseInt($(this).find('.song-item-number'));
-        var songNumber = songNumberCell.attr('data-song-number');
+        var songNumberCell = $(this).find('.song-item-number');
+        var songNumber = parseInt(songNumberCell.attr('data-song-number'));
 
         if (songNumber !== currentlyPlayingSongNumber) {
             songNumberCell.html(playButtonTemplate);
@@ -81,8 +81,8 @@ var createSongRow = function(songNumber, songName, songLength) {
     
      var offHover = function(event) {
          // if songNumber !== currentPlayingSong, then once mouseoff the template reverts back to a number
-         var songNumberCell = parseInt($(this).find('.song-item-number'));
-        var songNumber = songNumberCell.attr('data-song-number');
+         var songNumberCell = $(this).find('.song-item-number');
+        var songNumber = parseInt(songNumberCell.attr('data-song-number'));
 
         if (songNumber !== currentlyPlayingSongNumber) {
             songNumberCell.html(songNumber);
